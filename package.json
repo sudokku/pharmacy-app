@@ -1,0 +1,22 @@
+{
+  "name": "pharmacy-app",
+  "version": "1.0.0",
+  "description": "Simple E-Commerce Pharmacy Store app built on MERN stack.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "keywords": [
+    "mern",
+    "pharmacy",
+    "e-commerce",
+    "app",
+    "web-app"
+  ],
+  "author": "Chirilov Radu, Toma Tudor",
+  "license": "MIT",
+  "dependencies": {
+    "dotenv": "^16.0.0"
+  }
+}
