@@ -5,6 +5,16 @@ const asyncHandler = require('express-async-handler')
 const User = require('../models/user')
 const { default: mongoose } = require('mongoose')
 
+// @desc    Get users list
+// @route   POST /api/v1.0/users/login
+// @access  Public
+const getUserList = asyncHandler(async (req, res) => {
+    const users = await User.find()
+
+    res.status(200).json(users)
+})
+
+
 // @desc    Authenticate user
 // @route   POST /api/v1.0/users/login
 // @access  Public
@@ -64,6 +74,7 @@ const getSelfUser = asyncHandler(async (req, res) => {
 
 
 module.exports = {
+    getUserList,
     loginUser,
     registerUser,
     getSelfUser

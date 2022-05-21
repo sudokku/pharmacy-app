@@ -11,5 +11,7 @@ app.use(cors());
 app.use(express.json());
 
 
+app.use('/api/v1.0/users', require('./routes/userRoutes'))
+
 app.listen(port, () => console.log(`Express app listening on port ${port}`));
 
