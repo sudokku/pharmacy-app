@@ -9,6 +9,7 @@ app.use(cors());
 app.use(express.json());
 
 
-app.listen(process.env.PORT, () => {
-    console.log(`Express app listening on port ${process.env.PORT}`)
+app.listen(process.env.EXPRESS_PORT, () => {
+    console.log(`Express app listening on port ${process.env.EXPRESS_PORT}`)
 });
+
