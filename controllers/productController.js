@@ -28,7 +28,18 @@ const getProductsList = asyncHandler(async (req, res) => {
     res.status(200).json(products);
 });
 
+const getProductById = async (req, res) =>{
+    try{
+        let id = req.params.id;
+        let productDetails = await Product.findById(id);
+        res.status(200).json(productDetails);
+    } catch (err){
+        res.status(500).json(err);
+    }
+}
+
 module.exports = {
     newProduct,
-    getProductsList
+    getProductsList,
+    getProductById
 };

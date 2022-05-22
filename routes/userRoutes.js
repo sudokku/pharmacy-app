@@ -11,6 +11,6 @@ const {verifyToken} = require("../middleware/authJwt");
 router.route('/').get(getUserList)
 router.route('/register').post(registerUser)
 router.route('/login').post(loginUser)
-router.route('/self').get(verifyToken, getSelfUser)
+router.route('/self/:id').get(verifyToken, getSelfUser)
 
 module.exports = router
