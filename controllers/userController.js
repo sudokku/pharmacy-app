@@ -3,6 +3,8 @@ const bcrypt = require('bcryptjs')
 const asyncHandler = require('express-async-handler')
 
 const User = require('../models/user')
+const Role = require('../models/role')
+const config = require("../config/auth.config.js");
 const { default: mongoose } = require('mongoose')
 
 // @desc    Get users list
@@ -19,7 +21,48 @@ const getUserList = asyncHandler(async (req, res) => {
 // @route   POST /api/v1.0/users/login
 // @access  Public
 const loginUser = asyncHandler(async (req, res) => {
-    res.status(200).json({message: 'Login user'})
+    User.findOne({
+        username: req.body.username
+      })
+        .populate("roles", "-__v")
+        .exec((err, user) => {
+          if (err) {
+            res.status(500).send({ message: err });
+            return;
+          }
+    
+        if (!user) {
+            return res.status(404).send({ message: "User Not found." });
+        }
+    
+          var passwordIsValid = bcrypt.compareSync(
+            req.body.password,
+            user.password
+        );
+    
+        if (!passwordIsValid) {
+            return res.status(401).send({
+              accessToken: null,
+              message: "Invalid Password!"
+            });
+        }
+    
+          var token = jwt.sign({ id: user.id }, config.secret, {
+            expiresIn: 86400 // 24 hours
+          });
+    
+          var authorities = [];
+    
+          for (let i = 0; i < user.roles.length; i++) {
+            authorities.push("ROLE_" + user.roles[i].name.toUpperCase());
+        }
+        res.status(200).send({
+            id: user._id,
+            username: user.username,
+            roles: authorities,
+            accessToken: token
+        });
+    });
 })
 
 // @desc    Register user
