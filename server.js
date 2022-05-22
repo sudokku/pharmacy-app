@@ -10,6 +10,9 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+app.get('/', (req, res) => {
+    res.json({message: "Pharmacy App"})
+})
 
 app.use('/api/v1.0/users', require('./routes/userRoutes'))
 
