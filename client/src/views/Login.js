@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Container, Row, Col } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const Login = () => {
@@ -8,16 +8,18 @@ const Login = () => {
     username: "",
     password: "",
   });
+  const navigate = useNavigate();
 
   const handleSubmit = (event) => {
     event.preventDefault();
     const user = { ...formData };
 
-    console.log(user); 
+    //console.log(user); 
     axios
       .post("http://localhost:5000/api/v1.0/users/login", { ...user })
       .then((res) => {
-        console.log(res);
+        //console.log(res);
+        navigate("/my-account")
       })
       .catch((err) => console.warn(err));
   };

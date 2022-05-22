@@ -7,7 +7,7 @@ const config = require("../config/auth.config.js");
 const { default: mongoose } = require('mongoose')
 
 // @desc    Get users list
-// @route   POST /api/v1.0/users/login
+// @route   POST /api/v1.0/users
 // @access  Public
 const getUserList = asyncHandler(async (req, res) => {
     const users = await User.find()
