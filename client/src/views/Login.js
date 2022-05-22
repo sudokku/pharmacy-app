@@ -1,14 +1,34 @@
-import React from "react";
+import React, { useState } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 const Login = () => {
+  const [formData, setFormData] = useState({
+    username: "",
+    password: "",
+  });
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const user = { ...formData };
+
+    console.log(user); 
+    axios
+      .post("http://localhost:5000/api/v1.0/users/login", { ...user })
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => console.warn(err));
+  };
+
   return (
     <Container>
-      <br /><br />
+      <br />
+      <br />
       <Row className="d-flex justify-content-center">
         <Col xs lg={4}>
-          <form>
+          <form onSubmit={handleSubmit}>
             <h3>Login</h3>
             <div className="mb-3">
               <label>Username</label>
@@ -16,6 +36,9 @@ const Login = () => {
                 type="text"
                 className="form-control"
                 placeholder="username"
+                onChange={(e) =>
+                  setFormData({ ...formData, username: e.target.value })
+                }
               />
             </div>
             <div className="mb-3">
@@ -24,6 +47,9 @@ const Login = () => {
                 type="password"
                 className="form-control"
                 placeholder="password"
+                onChange={(e) =>
+                  setFormData({ ...formData, password: e.target.value})
+                }
               />
             </div>
             <div className="d-grid">
