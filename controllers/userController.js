@@ -3,7 +3,6 @@ const bcrypt = require('bcryptjs')
 const asyncHandler = require('express-async-handler')
 
 const User = require('../models/user')
-const Role = require('../models/role')
 const config = require("../config/auth.config.js");
 const { default: mongoose } = require('mongoose')
 
@@ -70,6 +69,7 @@ const loginUser = asyncHandler(async (req, res) => {
 // @access  Public
 const registerUser = asyncHandler(async (req, res) => {
     const { name, username, password, roles } = req.body
+    console.log(req.body)
 
     if(!name || !username || !password){
         res.status(400)
