@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Container, Row, Col } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const Register = () => {
@@ -10,16 +10,18 @@ const Register = () => {
     password: "",
     roles: ['user']
   });
+  const navigate = useNavigate();
 
   const handleSubmit = (event) => {
     event.preventDefault();
     const user = { ...formData };
     
-    console.log(user);
+    //console.log(user);
     axios
       .post("http://localhost:5000/api/v1.0/users/register", { ...user })
       .then((res) => {
-        console.log(res)
+        //console.log(res)
+        navigate("/login")
       })
       .catch((err) => console.warn(err))
   };
