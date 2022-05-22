@@ -6,10 +6,11 @@ const {
     registerUser,
     getSelfUser
 } = require('../controllers/userController')
+const {verifyToken} = require("../middleware/authJwt");
 
 router.route('/').get(getUserList)
 router.route('/register').post(registerUser)
 router.route('/login').post(loginUser)
-router.route('/self').get(getSelfUser)
+router.route('/self').get(verifyToken, getSelfUser)
 
 module.exports = router

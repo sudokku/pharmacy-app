@@ -20,6 +20,7 @@ app.get('/', (req, res) => {
 })
 
 app.use('/api/v1.0/users', require('./routes/userRoutes'))
+app.use('/api/v1.0/managers', require('./routes/managerRoutes'));
 
 connectDB()
 app.listen(port, () => console.log(`Express app listening on port ${port}`));

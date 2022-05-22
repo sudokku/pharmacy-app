@@ -112,7 +112,10 @@ const registerUser = asyncHandler(async (req, res) => {
 // @route   GET /api/v1.0/users/self
 // @access  Public
 const getSelfUser = asyncHandler(async (req, res) => {
-    res.status(200).json({message: 'Get self user data'})
+    const myAccount = await User.findById(req.params.id);
+    console.log(req.params);
+
+    res.status(200).json(myAccount);
 })
 
 
