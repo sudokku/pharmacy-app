@@ -50,15 +50,9 @@ const loginUser = asyncHandler(async (req, res) => {
             expiresIn: 86400 // 24 hours
           });
     
-          var authorities = [];
-    
-          for (let i = 0; i < user.roles.length; i++) {
-            authorities.push("ROLE_" + user.roles[i].name.toUpperCase());
-        }
         res.status(200).send({
             id: user._id,
             username: user.username,
-            roles: authorities,
             accessToken: token
         });
     });
