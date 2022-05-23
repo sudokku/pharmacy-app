@@ -10,9 +10,20 @@ const cartSchema = new mongoose.Schema({
         productId: {
             type: String,
         },
+        name: {
+            type: String
+        },
         quantity: {
             type: Number,
-            default: 1
+            default: 1,
+            min: 1
+        },
+        price: {
+            type: Number,
+            required: true
+        },
+        total: {
+            type: Number
         }
     }]
 });
