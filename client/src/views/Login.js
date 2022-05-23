@@ -18,7 +18,7 @@ const Login = () => {
     axios
       .post("http://localhost:5000/api/v1.0/users/login", { ...user })
       .then((res) => {
-        //console.log(res);
+        console.log(res);
         navigate("/my-account")
       })
       .catch((err) => console.warn(err));
