@@ -1,5 +1,5 @@
-const express = require('express')
-const router = express.Router()
+const express = require("express");
+const router = express.Router();
 const {
     getUserList,
     loginUser,
@@ -7,12 +7,14 @@ const {
     getSelfUser,
     newPrescription
 } = require('../controllers/userController')
-const {verifyToken} = require("../middleware/authJwt");
+const { verifyToken } = require("../middleware/authJwt");
+const { protect } = require("../middleware/authMiddleware");
 
 router.route('/').get(getUserList)
 router.route('/register').post(registerUser)
 router.route('/login').post(loginUser)
-router.route('/self/:id').get(verifyToken, getSelfUser)
+router.get("/self", protect, getSelfUser);
 router.route('/new-prescription').post(newPrescription);
 
-module.exports = router
+
+module.exports = router;
