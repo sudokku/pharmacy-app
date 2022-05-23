@@ -2,8 +2,7 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 const asyncHandler = require("express-async-handler");
 
-
-const Prescription = require('../models/prescription');
+const Prescription = require("../models/prescription");
 const User = require("../models/user");
 const config = require("../config/auth.config.js");
 const { default: mongoose } = require("mongoose");
@@ -89,12 +88,11 @@ const getSelfUser = asyncHandler(async (req, res) => {
     res.status(200).json(req.user);
 });
 
-const newPrescription = asyncHandler(async (req, res) =>{
-
+const newPrescription = asyncHandler(async (req, res) => {
     const { Presc } = req.body;
 
     const prescriptionData = await Prescription.create({
-        presDescription: Presc
+        presDescription: Presc,
     });
 
     try {
@@ -105,7 +103,6 @@ const newPrescription = asyncHandler(async (req, res) =>{
     }
 });
 
-=======
 // Generate JWT token
 const generateToken = (id) => {
     return jwt.sign({ id }, process.env.JWT_SECRET, {
@@ -113,14 +110,10 @@ const generateToken = (id) => {
     });
 };
 
-
 module.exports = {
     getUserList,
     loginUser,
     registerUser,
     getSelfUser,
-    newPrescription
-}
-
+    newPrescription,
 };
-
