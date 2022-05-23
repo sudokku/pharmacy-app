@@ -13,6 +13,7 @@ import Cart from "./views/Cart";
 import Login from "./views/Login";
 import Register from "./views/Register";
 import Product from "./views/Product";
+import UserList from "./views/UserList";
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
           <Route path="/login" element={<Login/>}/>
           <Route path="/register" element={<Register/>}/>
           <Route path="/shop/:id" element={<Product/>}/>
+          <Route path="/userList" element={<UserList/>}/>
         </Routes>
       </Router>
     </div>

@@ -3,7 +3,7 @@ import { Container, Row, Col } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 
-const Shop = () => {
+const Product = () => {
     const [product, setProduct] = useState({})
     let { id } = useParams()
     
@@ -37,5 +37,5 @@ const Shop = () => {
         );
     };
     
-    export default Shop;
+export default Product;
     
