@@ -3,6 +3,7 @@ const bcrypt = require('bcryptjs')
 const asyncHandler = require('express-async-handler')
 
 const User = require('../models/user')
+const Prescription = require('../models/prescription');
 const config = require("../config/auth.config.js");
 const { default: mongoose } = require('mongoose')
 
@@ -115,10 +116,27 @@ const getSelfUser = asyncHandler(async (req, res) => {
     }
 })
 
+const newPrescription = asyncHandler(async (req, res) =>{
+
+    const { Presc } = req.body;
+
+    const prescriptionData = await Prescription.create({
+        presDescription: Presc
+    });
+
+    try {
+        const savedPrescription = await prescriptionData.save();
+        res.status(200).json(savedPrescription);
+    } catch (err) {
+        res.status(500).json(err);
+    }
+});
+
 
 module.exports = {
     getUserList,
     loginUser,
     registerUser,
-    getSelfUser
+    getSelfUser,
+    newPrescription
 }
