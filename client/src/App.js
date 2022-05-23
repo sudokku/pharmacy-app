@@ -14,6 +14,8 @@ import Login from "./views/Login";
 import Register from "./views/Register";
 import Product from "./views/Product";
 import UserList from "./views/UserList";
+import PrescriptionList from "./views/PrescriptionList";
+import AddPrescription from "./views/AddPrescription";
 
 function App() {
   return (
@@ -30,6 +32,8 @@ function App() {
           <Route path="/register" element={<Register/>}/>
           <Route path="/shop/:id" element={<Product/>}/>
           <Route path="/userList" element={<UserList/>}/>
+          <Route path="/prescriptionList" element={<PrescriptionList/>}/>
+          <Route path="/addPrescription" element={<AddPrescription/>}/>
         </Routes>
       </Router>
     </div>
